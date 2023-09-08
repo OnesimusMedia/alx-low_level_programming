@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 
 /**
  * main - Entry point
@@ -7,7 +9,9 @@
  */
 int main(void)
 {
-	write(STDOUT_FILENO, "and that piece of art is useful
-			\" - Dora Korpar, 2015-10-19\n", 59);
+	char *msg = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+	int len = strlen(msg);
+
+	write(STDERR_FILENO, msg, len);
 	return (1);
 }
