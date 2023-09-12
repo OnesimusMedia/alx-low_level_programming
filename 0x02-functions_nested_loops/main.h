@@ -47,7 +47,11 @@ int _abs(int);
  * Return: last digit of integer
  */
 int print_last_digit(int);
-
+/**
+ * jack_bauer - jack bauer federal agent
+ *
+ */
+void jack_bauer(void);
 
 
 
