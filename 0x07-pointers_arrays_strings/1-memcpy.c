@@ -10,12 +10,24 @@
  */
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
-	unsigned int i;
+	char *temp = malloc(n);
 
-	for (i =o; i < n; i++)
+	if (temp == NULL)
 	{
-		dest[i] = src[i];
+		return (NULL);
 	}
+
+	for (unsigned int i = 0; i < n; i++)
+	{
+		temp[i] = src[i];
+	}
+
+	for (unsigned int i = 0; i < n; i++)
+	{
+		dest[i] = temp[i];
+	}
+
+	free(temp);
 
 	return (dest);
 }
