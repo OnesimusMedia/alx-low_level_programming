@@ -13,10 +13,11 @@ int is_positive_number(char *str)
 
 	while (str[i] != '\0')
 	{
-		if (!isdigit(str[i]))
+		if (str[i] < '0' || str[i] > '9')
 		{
 			return (0);
 		}
+		i++;
 	}
 
 	return (1);
@@ -39,7 +40,7 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 
-	for (i = 0; i < argc; i++)
+	for (i = 1; i < argc; i++)
 	{
 		if (is_positive_number(argv[i]))
 		{
