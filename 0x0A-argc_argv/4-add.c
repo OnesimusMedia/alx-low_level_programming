@@ -13,11 +13,10 @@ int is_positive_number(char *str)
 
 	while (str[i] != '\0')
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (!isdigit(str[i]))
 		{
 			return (0);
 		}
-		i++;
 	}
 
 	return (1);
