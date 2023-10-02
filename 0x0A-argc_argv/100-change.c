@@ -10,6 +10,9 @@
  */
 int main(int argc, char *argv[])
 {
+	int cents, i, coin_count = 0;
+	int coins[] = {25, 10, 5, 2, 1};
+
 	if (argc != 2)
 	{
 		printf("Error\n");
@@ -23,9 +26,6 @@ int main(int argc, char *argv[])
 		printf("0\n");
 		return (0);
 	}
-
-	int coins[] = {25, 10, 5, 2, 1};
-	int coin_count = 0;
 
 	for (int i = 0; i < 5; i++)
 	{
