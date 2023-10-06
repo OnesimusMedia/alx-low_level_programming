@@ -29,7 +29,7 @@ int is_palindrome_recursive(char *s, int start, int end)
 	if (s[start] != s[end])
 		return (0);
 
-	return (is_palindrome_recursive(s, start + 1,end - 1));
+	return (is_palindrome_recursive(s, start + 1, end - 1));
 }
 
 /**
