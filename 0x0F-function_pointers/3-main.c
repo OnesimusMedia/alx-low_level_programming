@@ -9,7 +9,8 @@ int (*get_op_func(char *s))(int, int);
  * @argc: The number of command-line arguments
  * @argv: An array of command-line argument strings
  *
- * Return: 0 on success, 98 for wrong number of arguments, 99 for invalid operator,
+ * Return: 0 on success, 98 for wrong number of arguments,
+ * 99 for invalid operator,
  * 100 for division/modulo by zero, and 1 for any other error
  */
 int main(int argc, char *argv[])
