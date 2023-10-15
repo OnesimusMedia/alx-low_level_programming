@@ -1,6 +1,17 @@
 #include <stdlib.h>
 
 /**
+ * is_space - Checks if a character is a space.
+ * @c: The character to check.
+ *
+ * Return: 1 if c is a space, 0 otherwise.
+ */
+int is_space(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n');
+}
+
+/**
  * strtow - Splits a string into words.
  * @str: The string to split.
  *
@@ -8,55 +19,57 @@
  */
 char **strtow(char *str)
 {
+	int i, j, word_count = 0;
 	char **words;
-	int i, j, k, word_count, word_length;
+	int in_word = 0;
 	
 	if (str == NULL || *str == '\0')
 		return (NULL);
 	
-	word_count = 0;
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != ' ')
+		if (!is_space(str[i]) && !in_word)
 		{
+			in_word = 1;
 			word_count++;
-			while (str[i] != ' ' && str[i])
-				i++;
 		}
+		else if (is_space(str[i]))
+		{
+			in_word = 0;
+		}
+	}
+	
+	if (word_count == 0)
+	{
+		return (NULL);
 	}
 	
 	words = malloc(sizeof(char *) * (word_count + 1));
-	if (words == NULL)
-		return (NULL);
 	
-	for (i = 0, k = 0; str[i] && word_count; i++)
+	if (words == NULL)
 	{
-		if (str[i] != ' ')
-		{
-			word_length = 0;
-			while (str[i] != ' ' && str[i])
-			{
-				word_length++;
-				i++;
-			}
+		return (NULL);
+	}
 
-			words[k] = malloc(word_length + 1);
-			if (words[k] == NULL)
-			{
-				for (k = 0; k < word_count; k++)
-					free(words[k]);
-				free(words);
-				return (NULL);
-			}
-			
-			for (j = i - word_length; j < i; j++)
-				words[k][j - (i - word_length)] = str[j];
-			words[k][j - (i - word_length)] = '\0';
-			k++;
-			word_count--;
+	in_word = 0;
+	j = 0;
+	
+	for (i = 0; str[i]; i++)
+	{
+		if (!is_space(str[i]) && !in_word)
+		{
+			in_word = 1;
+			words[j] = str + i;
+			j++;
+		}
+		else if (is_space(str[i]))
+		{
+			in_word = 0;
+			str[i] = '\0';
 		}
 	}
-	words[k] = NULL;
+	
+	words[word_count] = NULL;
 	
 	return (words);
-}
+}	
